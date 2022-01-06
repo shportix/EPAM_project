@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstraap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+    .inline {
+    display: inline;
+    }
+    .nav_button{
+    font-size: 50px;
+    vertical-align: 60px;
+    height: 100;
+    color:#455d7a;
+    border:0px;
+
+    background-color: #233142;
+    }
+    a{
+    text-decoration:none;
+    }
+    </style>
+<body style="background-color: #455d7a;">
+<header>
+    <div class="row" style="border:5px solid #233142; font-size:100px; color:#233142; background-color: #455d7a;">
+         <a  href="Departments.html">
+            <button style="margin-left:3%; vertical-align: 18px; width: 16%;" class="nav_button">
+                Departments
+            </button>
+        </a>
+        <a href="">
+            <button class="nav_button" style="vertical-align: 18px; width: 15%;  margin-right:23%;">
+                Employees
+            </button>
+        </a>
+
+        <a href="">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width: 24%;">
+                Change password
+            </button>
+        </a>
+        <a href="sign_in.html">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width:12%; ">
+                Sign out
+            </button>
+        </a>
+
+    </div>
+</header>
+<div style="background-color: #455d7a; padding: 2%;">
+    <input type="text" style="width:96%; font-size:40px;">
+    <div class="inline">
+        <button style="vertical-align:-5px;">
+            <img src="images/search.png" height="40px">
+        </button>
+    </div>
+    <table style="margin-top: 40px">
+        <tr>
+            <td>
+                <div style="width:500px;">
+
+                    <div style="background-color: #e3e3e3; padding:30px; width:400px; font-size: 40px; height: 100%;">
+                        <div style="margin-left: 15%">
+                            <div style="color:#233142;">
+                                Positions:
+                            </div>
+                            <div>
+                                <input type="checkbox" style="margin-top: 50px;">
+                                <div class="inline" style="color:#233142;">
+                                    <label style="">Courier</label>
+                                </div>
+
+                            </div>
+                            <div>
+                                <input type="checkbox">
+                                <div class="inline" style="color:#233142;">
+                                    <label style="">Chef</label>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="checkbox">
+                                <div class="inline" style="color:#233142;">
+                                    <label style="">Cook</label>
+                                </div>
+                            </div>
+                            <div style="color:#233142; margin-top: 50px;">
+                                Sort by surname:
+                            </div>
+                            <div>
+                                <select style="color:#233142; font-size: 40px; border-radius: 10px; margin-top: 10px; width:80%">
+                                    <option>Descending</option>
+                                    <option>Ascending</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button style="color:#233142; border: 4px solid #233142; background-color: #e3e3e3; font-size: 40px; width: 80%; border-radius: 10px; margin-top: 50px;">Accept</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </td>
+            <td valign="top" style="background-color:#e3e3e3;">
+                <table border="4px" style="text-align:center; font-size: 40px; vertical-align: top;">
+                    <tr style="font-weight: bold;">
+                        <td style="width:300px">Surname</td>
+                        <td style="width:300px; height: 70px; ">Name</td>
+                        <td style="width:300px">Position</td>
+                        <td style="width:300px"> Salary</td>
+                        <td style="width:200px">Department ID</td>
+                    </tr>
+                    <tr>
+                        <td style="width:300px; height: 70px;"><a href="Employee.html">Ivanov</a></td>
+                        <td style="width:300px">Ivan</td>
+                        <td style="width:300px">Courier</td>
+                        <td style="width:300px">15000₴</td>
+                        <td style="width:200px">1</td>
+                    </tr>
+                    <tr>
+                        <td style="width:300px; height: 70px;"><a href="">Petrov</a></td>
+                        <td style="width:300px">Danil</td>
+                        <td style="width:300px">Chef</td>
+                        <td style="width:300px">30000₴</td>
+                        <td style="width:200px">1</td>
+                    </tr>
+                    <tr>
+                        <td style="width:300px; height: 70px; "><a href="">Martynov</a> </td>
+                        <td style="width:300px">Oleg</td>
+                        <td style="width:300px">Cook</td>
+                        <td style="width:300px">20000₴</td>
+                        <td style="width:200px">1</td>
+                    </tr>
+
+                </table>
+
+            </td>
+        <tr>
+    </table>
+
+</div>
+
+</body>
+</html>

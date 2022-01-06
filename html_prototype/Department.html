@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstraap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+    .inline {
+    display: inline;
+    }
+    .nav_button{
+    font-size: 50px;
+    vertical-align: 60px;
+    height: 100;
+    color:#455d7a;
+    border:0px;
+
+    background-color: #233142;
+    }
+    a{
+    text-decoration:none;
+    }
+    </style>
+<body style="background-color: #455d7a;">
+<header>
+    <div class="row" style="border:5px solid #233142; font-size:100px; color:#233142; background-color: #455d7a;">
+         <a  href="Departments.html">
+            <button style="margin-left:3%; vertical-align: 18px; width: 16%;" class="nav_button">
+                Departments
+            </button>
+        </a>
+        <a href="Employees.html">
+            <button class="nav_button" style="vertical-align: 18px; width: 15%;  margin-right:23%;">
+                Employees
+            </button>
+        </a>
+
+        <a href="">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width: 24%;">
+                Change password
+            </button>
+        </a>
+        <a href="sign_in.html">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width:12%; ">
+                Sign out
+            </button>
+        </a>
+
+    </div>
+</header>
+<div style="background-color: #455d7a; padding-top: 2%; padding-left: 12%; padding-right:12%;">
+    <div style="background-color: #e3e3e3; padding-top:50px; padding-bottom:50px; border: 6px solid #233142;" class="row">
+        <table style="font-size:50px; margin:auto;">
+            <tr>
+                <td style="width:500px;">ID:</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td>Dnipro</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>Gogol street 7</td>
+            </tr>
+            <tr>
+                <td>Income:</td>
+                <td>30000₴</td>
+            </tr>
+        </table>
+        <div style="text-align:center; font-size:50px; margin-top:50px;">Employees</div>
+        <table style="font-size:40px; margin:auto; text-align: center; margin-top: 50px;" border="2px solid black">
+            <tr>
+                <td style="width:300px">Surname:</td>
+                <td style="width:300px">Name:</td>
+                <td style="width:300px">Position:</td>
+                <td style="width:300px">Salary</td>
+            </tr>
+            <tr>
+                <td><a href="Employee.html">Ivanov</a></td>
+                <td>Ivan</td>
+                <td>Courier</td>
+                <td>15000₴</td>
+            </tr>
+            <tr>
+                <td><a href="Department.html">Petrov</a></td>
+                <td>Danil</td>
+                <td>Chef</td>
+                <td>30000₴</td>
+            </tr>
+            <tr>
+                <td><a href="Department.html">Martynov</a></td>
+                <td>Oleg</td>
+                <td>Cook</td>
+                <td>20000₴</td>
+            </tr>
+        </table>
+        <table style="margin:auto; margin-top:50px; font-size:40px">
+            <tr>
+                <td>
+                    <div>
+                        Salary
+                    </div>
+                </td>
+                <td>
+                    <select style="font-size:40px; margin-left: 10px;">
+                        <option>
+                            increase
+                        </option>
+                        <option>
+                            decrease
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <div style="margin-left: 10px;">
+                        for all department employees by
+                    </div>
+                </td>
+                <td>
+                    <input type="number" style="font-size:40px; width: 140px; margin-left: 10px;">
+                </td>
+                <td>
+                    <select style="font-size:40px; margin-left: 10px;">
+                        <option>
+                            ₴
+                        </option>
+                        <option>
+                            %
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <button style="font-size:40px; width: 160px; margin-left: 10px; background-color: #455d7a; color:#233142; border: 4px solid #233142;">
+                        Apply
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
