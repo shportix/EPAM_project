@@ -15,4 +15,5 @@ install:
 # command to run tests
 script:
   - pytest
+  - pylint --output-format=text webapp.py
 
