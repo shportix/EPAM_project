@@ -13,3 +13,4 @@ python:
 # command to run tests
 script:
   - pytest
+  - pylint
