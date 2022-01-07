@@ -10,6 +10,8 @@ python:
   - "3.9-dev"  # 3.9 development branch
   - "nightly"  # nightly build
 # command to install dependencies
+install:
+  - pip install pylint
 # command to run tests
 script:
   - pytest
