@@ -12,5 +12,5 @@ install:
 # command to run tests
 script:
   - pytest
-  - coverage run --source=delivery-app -m pytest tests
+  - coverage run --source=delivery-app -m pytest delivery-app/tests
   
