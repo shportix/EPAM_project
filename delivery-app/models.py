@@ -1,8 +1,8 @@
 """
 database models
 """
-from app import db
 from sqlalchemy.sql import func
+from app import db
 
 
 class Position(db.Model):  # pylint: disable=too-few-public-methods
@@ -10,7 +10,7 @@ class Position(db.Model):  # pylint: disable=too-few-public-methods
     position table model
     """
     __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
     position_name = db.Column(db.String(100), unique=True)
 
 
