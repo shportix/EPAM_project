@@ -12,4 +12,5 @@ install:
 script:
   - pytest
   - coverage run -m unittest discover
+  - coverage report
   
