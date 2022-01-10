@@ -11,4 +11,4 @@ install:
 script:
   - pytest
   - pylint --output-format=text delivery-app
-
+   - coverage run -m unittest discover
