@@ -76,7 +76,7 @@ class Dish(db.Model):  # pylint: disable=too-few-public-methods
     dish table model
     """
     __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
     category_id = db.Column(db.Integer, db.ForeignKey('dish_category.id'))  # pylint: disable=E1101
     dish_name = db.Column(db.String(100), unique=True, nullable=False)  # pylint: disable=E1101
     cost_price = db.Column(db.Integer, nullable=False)  # pylint: disable=E1101
