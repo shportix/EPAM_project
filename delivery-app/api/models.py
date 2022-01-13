@@ -2,7 +2,7 @@
 database models
 """
 from sqlalchemy.sql import func
-from app import db
+from api import db
 
 
 class Position(db.Model):  # pylint: disable=too-few-public-methods
@@ -21,7 +21,7 @@ class User(db.Model):  # pylint: disable=too-few-public-methods
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
     email = db.Column(db.String(100), nullable=False, unique=True)  # pylint: disable=E1101
-    password = db.Column(db.String(100), nullable=False)  # pylint: disable=E1101
+    password = db.Column(db.Text, nullable=False)  # pylint: disable=E1101
     name = db.Column(db.String(100), nullable=True)  # pylint: disable=E1101
     surname = db.Column(db.String(100), nullable=True)  # pylint: disable=E1101
     phoneNumber = db.Column(db.String(50), nullable=True)  # pylint: disable=E1101
