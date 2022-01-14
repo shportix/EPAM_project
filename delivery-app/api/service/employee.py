@@ -84,7 +84,7 @@ class EmployeeCRUD(Resource):
         delete method for employee table
         """
         employee = Employee.query.get(employee_id)
-        user = User.uery.get(employee_id)
+        user = User.query.get(employee_id)
         if employee:
             user.isEmployee = False
             db.session.delete(employee)  # pylint: disable=E1101

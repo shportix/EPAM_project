@@ -45,7 +45,7 @@ def fill_positions(name, host="localhost", user="root", passwd=""):
     my_cursor = mydb.cursor()
 
 
-def fill_db(name, host="localhost", user="root", passwd=""):
+def fill_db(name, test=True, host="localhost", user="root", passwd=""):
     mydb = mysql.connector.connect(
         host=host,
         user=user,
@@ -171,18 +171,28 @@ def fill_db(name, host="localhost", user="root", passwd=""):
                                      datetime.datetime.strptime("2000/08/25", '%Y/%m/%d'),
                                      15000))
 
-    image = convertToBinaryData(
-        "../static/images/roll-kaliforniya.jpg")
-    my_cursor.execute(add_image, (1,
-                                  image,
-                                  "roll-kaliforniya",
-                                  "jpg"))
-    image = convertToBinaryData(
-        "../static/images/cheeseburger.jpeg")
-    my_cursor.execute(add_image, (2,
-                                  image,
-                                  "cheeseburger",
-                                  "jpeg"))
+    if test:
+        my_cursor.execute(add_image, (1,
+                                      None,
+                                      "roll-kaliforniya",
+                                      "jpg"))
+        my_cursor.execute(add_image, (2,
+                                      None,
+                                      "cheeseburger",
+                                      "jpeg"))
+    else:
+        image = convertToBinaryData(
+            "../static/images/roll-kaliforniya.jpg")
+        my_cursor.execute(add_image, (1,
+                                      image,
+                                      "roll-kaliforniya",
+                                      "jpg"))
+        image = convertToBinaryData(
+            "../static/images/cheeseburger.jpeg")
+        my_cursor.execute(add_image, (2,
+                                      image,
+                                      "cheeseburger",
+                                      "jpeg"))
 
     my_cursor.execute(add_dish_category, (1,
                                           "Burgers",))

@@ -25,7 +25,7 @@ def validate_phone_number(phone_number):
     """
     phone number validation function
     """
-    regex_phone = r'(+38[0-9]{10})|([0-9]{10})'
+    regex_phone = r'([0-9]{10})'
     return re.fullmatch(regex_phone, phone_number)
 
 
@@ -116,5 +116,5 @@ class UserCRUD(Resource):
         if user:
             db.session.delete(user)  # pylint: disable=E1101
             db.session.commit()  # pylint: disable=E1101
-            return make_response(users_schema.jsonify(user), 200)
+            return make_response(user_schema.jsonify(user), 200)
         return make_response("position_not_found", 404)

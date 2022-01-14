@@ -33,7 +33,10 @@ class ImageCRUD(Resource):
         """
         create method for image table
         """
-        img = request.form["img"]
+        if request.form["img"] == "None":
+            img = None
+        else:
+            img = request.form["img"]
         name = request.form["name"]
         mimetype = request.form["mimetype"]
         new_image = Image(img=img,
@@ -49,7 +52,10 @@ class ImageCRUD(Resource):
         """
         image = Image.query.get(image_id)
         if image:
-            image.img = request.form["img"]
+            if request.form["img"] == "None":
+                image.img = None
+            else:
+                image.img = request.form["img"]
             image.name = request.form["name"]
             image.mimetype = request.form["mimetype"]
             db.session.commit()  # pylint: disable=E1101

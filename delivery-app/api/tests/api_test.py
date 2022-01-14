@@ -10,24 +10,24 @@ setup_done = False
 class FlaskrTestCase(unittest.TestCase):
 
     def setUp(self):
-        if create_db.is_database_exist("travis_test_db", passwd="Fsmnl2002"):
-            create_db.delete_db("travis_test_db", passwd="Fsmnl2002")
-        create_db.create_test_db(passwd="Fsmnl2002")
+        if create_db.is_database_exist("travis_test_db", passwd=""):
+            create_db.delete_db("travis_test_db", passwd="")
+        create_db.create_test_db(passwd="")
         global setup_done
         if not setup_done:
             setup_done = True
             api.app.config[
-                'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Fsmnl2002@localhost/travis_test_db'
+                'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/travis_test_db'
             api.app.config['TESTING'] = True
             db = flask_sqlalchemy.SQLAlchemy(api.app)
         from api.models import Position, User, Department, Employee, Image, DishCategory, Dish, \
             Status, Delivery, OrderedDish
         api.db.create_all()
-        create_db.fill_db("travis_test_db", passwd="Fsmnl2002")
+        create_db.fill_db("travis_test_db", passwd="")
         self.app = api.app.test_client()
 
     def tearDown(self):
-        create_db.delete_db("travis_test_db", passwd="Fsmnl2002")
+        create_db.delete_db("travis_test_db", passwd="")
 
     def test_position_create_succeed(self):
         result = self.app.post("/position", data={"position_name": "position_name"})
@@ -38,7 +38,7 @@ class FlaskrTestCase(unittest.TestCase):
         assert result.status_code, result.get_json() == (200, dict(id=1, position_name="courier"))
 
     def test_position_get_all_succeed(self):
-        result = self.app.get('/positions')
+        result = self.app.get('/position')
         assert result.status_code == 200
 
     def test_position_delete_succeed(self):
@@ -110,7 +110,7 @@ class FlaskrTestCase(unittest.TestCase):
         assert result.status_code == 200
 
     def test_employee_get_by_id_succeed(self):
-        result = self.app.get("/employee/1")
+        result = self.app.get("/employee/2")
         assert result.status_code == 200
 
     def test_employee_get_all_succeed(self):
@@ -118,19 +118,19 @@ class FlaskrTestCase(unittest.TestCase):
         assert result.status_code == 200
 
     def test_employee_delete_succeed(self):
-        result = self.app.delete("/employee/1")
+        result = self.app.delete("/employee/2")
         assert result.status_code == 200
 
     def test_employee_update_succeed(self):
-        result = self.app.put("/employee/1", data={"position_id": 1,
+        result = self.app.put("/employee/2", data={"position_id": 1,
                                                    "department_id": 1,
                                                    "birthday": "1991/09/8",
                                                    "salary": 1})
         assert result.status_code == 200
 
     def test_image_create_succeed(self):
-        image = create_db.convertToBinaryData("../static/images/test.png")
-        result = self.app.post("/image", data={"img": image,
+        # image = create_db.convertToBinaryData("../static/images/test.png")
+        result = self.app.post("/image", data={"img": "None",
                                                "name": "name",
                                                "mimetype": "png"})
         assert result.status_code == 200
@@ -148,8 +148,8 @@ class FlaskrTestCase(unittest.TestCase):
         assert result.status_code == 200
 
     def test_image_update_succeed(self):
-        image = create_db.convertToBinaryData("../static/images/test.png")
-        result = self.app.put("/image/1", data={"img": image,
+        # image = create_db.convertToBinaryData("../static/images/test.png")
+        result = self.app.put("/image/1", data={"img": "None",
                                                 "name": "name",
                                                 "mimetype": "png"})
         assert result.status_code == 200
