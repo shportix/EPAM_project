@@ -165,11 +165,11 @@ def fill_db(name, host="localhost", user="root", passwd=""):
                                      datetime.datetime.strptime("2000/08/25", '%Y/%m/%d'),
                                      15000))
 
-    image = convertToBinaryData("/home/ubuntudanil/Рабочий стол/Python/EPAM_project/EPAM_project/delivery-app/api/static/images/roll-kaliforniya.jpg")
+    image = convertToBinaryData("../static/images/roll-kaliforniya.jpg")
     my_cursor.execute(add_image, (image,
                                   "roll-kaliforniya",
                                   "jpg"))
-    image = convertToBinaryData("/home/ubuntudanil/Рабочий стол/Python/EPAM_project/EPAM_project/delivery-app/api/static/images/cheeseburger.jpeg")
+    image = convertToBinaryData("../static/images/cheeseburger.jpeg")
     my_cursor.execute(add_image, (image,
                                   "cheeseburger",
                                   "jpeg"))
