@@ -35,18 +35,31 @@ def create_test_db(host="localhost", user="root", passwd=""):
     my_cursor.execute("CREATE DATABASE travis_test_db")
 
 
+def fill_positions(name, host="localhost", user="root", passwd=""):
+    mydb = mysql.connector.connect(
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=name
+    )
+    my_cursor = mydb.cursor()
+
+
+
+
+
+
 def fill_db(name, host="localhost", user="root", passwd=""):
     mydb = mysql.connector.connect(
         host=host,
         user=user,
         passwd=passwd,
-        auth_plugin='mysql_native_password'
+        database=name
     )
 
     my_cursor = mydb.cursor()
-    add_position = "INSERT INTO position " \
-                   "(position_name) " \
-                   "VALUES (%s)"
+
+    add_position = f"INSERT INTO position (position_name) VALUES (%s)"
     add_user = "INSERT INTO user " \
                "(email, password, name, surname, phoneNumber, isEmployee) " \
                "VALUES (%s,%s,%s,%s,%s,%s)"
@@ -75,7 +88,7 @@ def fill_db(name, host="localhost", user="root", passwd=""):
                        "(delivery_id,dish_id, status_id) " \
                        "VALUES (%s,%s,%s)"
 
-    my_cursor.execute(f"USE {name}")
+
     my_cursor.execute(add_department, ("IT",
                                        "Kharkiv",
                                        "Sumska street 74"))
@@ -152,11 +165,11 @@ def fill_db(name, host="localhost", user="root", passwd=""):
                                      datetime.datetime.strptime("2000/08/25", '%Y/%m/%d'),
                                      15000))
 
-    image = convertToBinaryData("../static/images/roll-kaliforniya.jpg")
+    image = convertToBinaryData("/home/ubuntudanil/Рабочий стол/Python/EPAM_project/EPAM_project/delivery-app/api/static/images/roll-kaliforniya.jpg")
     my_cursor.execute(add_image, (image,
                                   "roll-kaliforniya",
                                   "jpg"))
-    image = convertToBinaryData("../static/images/cheeseburger.jpeg")
+    image = convertToBinaryData("/home/ubuntudanil/Рабочий стол/Python/EPAM_project/EPAM_project/delivery-app/api/static/images/cheeseburger.jpeg")
     my_cursor.execute(add_image, (image,
                                   "cheeseburger",
                                   "jpeg"))
@@ -196,6 +209,8 @@ def fill_db(name, host="localhost", user="root", passwd=""):
     my_cursor.execute(add_ordered_dish, (1,
                                          2,
                                          5))
+    mydb.commit()
+    mydb.close()
 
 
 def delete_db(name, host="localhost", user="root", passwd=""):
@@ -203,7 +218,6 @@ def delete_db(name, host="localhost", user="root", passwd=""):
         host=host,
         user=user,
         passwd=passwd,
-        auth_plugin='mysql_native_password'
     )
 
     my_cursor = mydb.cursor()
@@ -216,7 +230,6 @@ def is_database_exist(name, host="localhost", user="root", passwd=""):
         host=host,
         user=user,
         passwd=passwd,
-        auth_plugin='mysql_native_password'
     )
 
     my_cursor = mydb.cursor()

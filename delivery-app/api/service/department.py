@@ -40,7 +40,7 @@ class DepartmentCRUD(Resource):
         address = request.form['address']
         new_department = Department(name=name,
                                     city=city,
-                                    addres=address,)
+                                    address=address,)
         db.session.add(new_department)  # pylint: disable=E1101
         db.session.commit()  # pylint: disable=E1101
         return make_response(department_schema.jsonify(new_department), 200)
