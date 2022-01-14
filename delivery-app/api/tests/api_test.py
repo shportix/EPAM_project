@@ -1,10 +1,6 @@
-import json
-import os
 import datetime
 import unittest
-import tempfile
 import flask_sqlalchemy
-import requests
 
 import api
 from api import create_db
@@ -15,24 +11,24 @@ setup_done = False
 class FlaskrTestCase(unittest.TestCase):
 
     def setUp(self):
-        if create_db.is_database_exist("travis_test_db", passwd="Fsmnl2002"):
-            create_db.delete_db("travis_test_db", passwd="Fsmnl2002")
-        create_db.create_test_db(passwd="Fsmnl2002")
+        if create_db.is_database_exist("travis_test_db", passwd=""):
+            create_db.delete_db("travis_test_db", passwd="")
+        create_db.create_test_db(passwd="")
         global setup_done
         if not setup_done:
             setup_done = True
             api.app.config[
-                'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Fsmnl2002@localhost/travis_test_db'
+                'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/travis_test_db'
             api.app.config['TESTING'] = True
             db = flask_sqlalchemy.SQLAlchemy(api.app)
         from api.models import Position, User, Department, Employee, Image, DishCategory, Dish, \
             Status, Delivery, OrderedDish
         api.db.create_all()
-        create_db.fill_db("travis_test_db", passwd="Fsmnl2002")
+        create_db.fill_db("travis_test_db", passwd="")
         self.app = api.app.test_client()
 
     def tearDown(self):
-        create_db.delete_db("travis_test_db", passwd="Fsmnl2002")
+        create_db.delete_db("travis_test_db", passwd="")
 
     def test_position_create_succeed(self):
         result = self.app.post("/position", data={"position_name": "position_name"})
