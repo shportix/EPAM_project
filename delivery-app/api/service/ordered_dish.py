@@ -3,28 +3,30 @@ CRUD operations for order table file
 """
 from flask import jsonify, request, make_response
 from flask_restful import Resource
-from api.models import Order, Delivery, Dish, Status  # pylint: disable=import-error
+from api.models import OrderedDish, Delivery, Dish, Status  # pylint: disable=import-error
 from api import db, OrderSchema  # pylint: disable=import-error
 
 orders_schema = OrderSchema(many=True)
 order_schema = OrderSchema()
 
 
-class OrderCRUD(Resource):
+class OrderedDishCRUD(Resource):
     """
     CRUD operations for order table
     """
 
     def get(self, order_id=None):  # pylint: disable=R0201
         """
-        method that gets order id nd returns order
+        read method for order table
         """
         if order_id is not None:
-            order = Order.query.get(order_id)
+            # get by id
+            order = OrderedDish.query.get(order_id)
             if order:
                 return make_response(order_schema.jsonify(order), 200)
             return make_response("order_not_found", 404)
-        all_orders = Order.query.all()
+        # get all
+        all_orders = OrderedDish.query.all()
         result = orders_schema.dump(all_orders)
         return make_response(jsonify(result), 200)
 
@@ -41,9 +43,9 @@ class OrderCRUD(Resource):
             return make_response("invalid_dish_id", 400)
         if not Status.query.get(status_id):
             return make_response("invalid_status_id", 400)
-        new_order = Order(delivery_id=delivery_id,
-                             dish_id=dish_id,
-                             status_id=status_id)
+        new_order = OrderedDish(delivery_id=delivery_id,
+                                dish_id=dish_id,
+                                status_id=status_id)
         db.session.add(new_order)  # pylint: disable=E1101
         db.session.commit()  # pylint: disable=E1101
         return make_response(order_schema.jsonify(new_order), 200)
@@ -52,7 +54,7 @@ class OrderCRUD(Resource):
         """
         method that updates order by id
         """
-        order = Order.query.get(order_id)
+        order = OrderedDish.query.get(order_id)
         delivery_id = int(request.form["delivery_id"])
         dish_id = int(request.form["dish_id"])
         status_id = int(request.form["status_id"])
@@ -74,7 +76,7 @@ class OrderCRUD(Resource):
         """
         delete method for order table
         """
-        order = Order.query.get(order_id)
+        order = OrderedDish.query.get(order_id)
         if order:
             db.session.delete(order)  # pylint: disable=E1101
             db.session.commit()  # pylint: disable=E1101

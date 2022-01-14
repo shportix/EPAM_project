@@ -36,13 +36,15 @@ class UserCRUD(Resource):
 
     def get(self, user_id=None):  # pylint: disable=R0201
         """
-        method that gets user id nd returns user
+        read method for user table
         """
         if user_id is not None:
+            # get by id
             user = User.query.get(user_id)
             if user:
                 return make_response(user_schema.jsonify(user), 200)
             return make_response("user_not_found", 404)
+        # get all
         all_users = User.query.all()
         result = users_schema.dump(all_users)
         return make_response(jsonify(result), 200)

@@ -2,6 +2,7 @@
 database models
 """
 from sqlalchemy.sql import func
+from sqlalchemy.dialects.mysql import MEDIUMBLOB
 from api import db
 
 
@@ -30,7 +31,7 @@ class User(db.Model):  # pylint: disable=too-few-public-methods
 
 class Department(db.Model):  # pylint: disable=too-few-public-methods
     """
-    Department table model
+    department table model
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
@@ -41,7 +42,7 @@ class Department(db.Model):  # pylint: disable=too-few-public-methods
 
 class Employee(db.Model):  # pylint: disable=too-few-public-methods
     """
-    Employee table model
+    employee table model
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)  # pylint: disable=E1101
@@ -57,7 +58,7 @@ class Image(db.Model):  # pylint: disable=too-few-public-methods
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
-    img = db.Column(db.Text)  # pylint: disable=E1101
+    img = db.Column(MEDIUMBLOB)  # pylint: disable=E1101
     name = db.Column(db.String(200), nullable=False)  # pylint: disable=E1101
     mimetype = db.Column(db.String(200), nullable=False)  # pylint: disable=E1101
 
@@ -87,7 +88,7 @@ class Dish(db.Model):  # pylint: disable=too-few-public-methods
 
 class Status(db.Model):  # pylint: disable=too-few-public-methods
     """
-    status category table model
+    status table model
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
@@ -96,7 +97,7 @@ class Status(db.Model):  # pylint: disable=too-few-public-methods
 
 class Delivery(db.Model):  # pylint: disable=too-few-public-methods
     """
-    delivery category table model
+    delivery table model
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101
@@ -108,9 +109,9 @@ class Delivery(db.Model):  # pylint: disable=too-few-public-methods
     status_id = db.Column(db.Integer, db.ForeignKey('status.id'))  # pylint: disable=E1101
 
 
-class Order(db.Model):  # pylint: disable=too-few-public-methods
+class OrderedDish(db.Model):  # pylint: disable=too-few-public-methods
     """
-    order category table model
+    ordered dish table model
     """
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)  # pylint: disable=E1101

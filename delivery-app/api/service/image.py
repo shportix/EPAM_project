@@ -16,13 +16,15 @@ class ImageCRUD(Resource):
     """
     def get(self, image_id=None):  # pylint: disable=R0201
         """
-        method that gets image id nd returns image
+        read method for image table
         """
         if image_id is not None:
+            # get by id
             image = Image.query.get(image_id)
             if image:
                 return make_response(image_schema.jsonify(image), 200)
             return make_response("image_not_found", 404)
+        # get all
         all_images = Image.query.all()
         result = images_schema.dump(all_images)
         return make_response(jsonify(result), 200)

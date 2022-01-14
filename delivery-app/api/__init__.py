@@ -2,12 +2,13 @@
 start application
 """
 import requests
-from flask import Flask, jsonify, request, render_template, make_response
+from flask import Flask, jsonify, request, render_template, make_response, Response
 import flask_sqlalchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
 from flask_wtf import FlaskForm
-from  wtforms import StringField
+from wtforms import StringField
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -178,7 +179,7 @@ class PositionForm(FlaskForm):
 
 
 from api.service.position import PositionCRUD  # pylint: disable=import-error, C0413, no-name-in-module
-from api.service.order import OrderCRUD  # pylint: disable=import-error, C0413, no-name-in-module
+from api.service.ordered_dish import OrderedDishCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.image import ImageCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.dish import DishCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.user import UserCRUD  # pylint: disable=import-error, C0413, no-name-in-module
@@ -187,10 +188,10 @@ from api.service.department import DepartmentCRUD  # pylint: disable=import-erro
 from api.service.employee import EmployeeCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.status import StatusCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.delivery import DeliveryCRUD  # pylint: disable=import-error, C0413, no-name-in-module
-
+from api.models import Image  # pylint: disable=import-error, C0413, no-name-in-module
 
 api.add_resource(PositionCRUD, '/position', '/position/<int:position_id>')
-api.add_resource(OrderCRUD, '/order', '/order/<int:order_id>')
+api.add_resource(OrderedDishCRUD, '/ordered_dish', '/ordered_dish/<int:order_id>')
 api.add_resource(ImageCRUD, '/image', '/image/<int:image_id>')
 api.add_resource(DishCRUD, '/dish', '/dish/<int:dish_id>')
 api.add_resource(UserCRUD, '/user', '/user/<int:user_id>')
@@ -204,6 +205,35 @@ positions_schema = PositionSchema(many=True)
 
 @app.route("/")
 def index():
-    position_crud = PositionCRUD()
-    position = requests.get('http://127.0.0.1:5000/position/1')
-    return render_template('test.html', positions=position.json())
+    # position_crud = PositionCRUD()
+    # position = requests.get('http://127.0.0.1:5000/position/1')
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    pic = request.files['pic']
+    if not pic:
+        return 'No pic uploaded!', 400
+
+    filename = secure_filename(pic.filename)
+    mimetype = pic.mimetype
+    if not filename or not mimetype:
+        return 'Bad upload!', 400
+
+    img = Image(img=pic.read(), name=filename, mimetype=mimetype)
+    db.session.add(img)
+    db.session.commit()
+
+    return 'Img Uploaded!', 200
+
+
+@app.route('/<int:id>')
+def get_img(id):
+    # img = Image.query.filter_by(id=id).first()
+    # if not img:
+    #     return 'Img Not Found!', 404
+    #
+    # return Response(img.img, mimetype=img.mimetype)
+    # position = requests.post(f'http://127.0.0.1:5000/position', data={"position_name":"position"})
+    image =  requests.get(f'http://127.0.0.1:5000/image/{id}')
+    return image.content

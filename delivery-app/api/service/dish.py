@@ -17,13 +17,15 @@ class DishCRUD(Resource):
 
     def get(self, dish_id=None):  # pylint: disable=R0201
         """
-        method that gets dish id nd returns dish
+        read method for dish table
         """
         if dish_id is not None:
+            # get by id
             dish = Dish.query.get(dish_id)
             if dish:
                 return make_response(dish_schema.jsonify(dish), 200)
             return make_response("dish_not_found", 404)
+        # get all
         all_dishes = Dish.query.all()
         result = dishes_schema.dump(all_dishes)
         return make_response(jsonify(result), 200)

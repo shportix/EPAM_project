@@ -18,13 +18,15 @@ class DepartmentCRUD(Resource):
 
     def get(self, department_id=None):  # pylint: disable=R0201
         """
-        method that gets department id nd returns department
+        read method for department table
         """
         if department_id is not None:
+            # get by id
             department = Department.query.get(department_id)
             if department:
                 return make_response(department_schema.jsonify(department), 200)
             return make_response("department_not_found", 404)
+        # get all
         all_departments = Department.query.all()
         result = departments_schema.dump(all_departments)
         return make_response(jsonify(result), 200)

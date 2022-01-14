@@ -16,16 +16,17 @@ class DeliveryCRUD(Resource):
     """
     CRUD operations for delivery table
     """
-
     def get(self, delivery_id=None):  # pylint: disable=R0201
         """
-        method that gets delivery id and returns delivery
+        read method for delivery table
         """
         if delivery_id is not None:
+            # get by id
             delivery = Delivery.query.get(delivery_id)
             if delivery:
                 return make_response(delivery_schema.jsonify(delivery), 200)
             return make_response("delivery_not_found", 404)
+        # get all
         all_deliveries = Delivery.query.all()
         result = deliveries_schema.dump(all_deliveries)
         return make_response(jsonify(result), 200)

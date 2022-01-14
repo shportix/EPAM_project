@@ -16,13 +16,15 @@ class StatusCRUD(Resource):
     """
     def get(self, status_id=None):  # pylint: disable=R0201
         """
-        method that gets status id nd returns status
+        read method for status table
         """
         if status_id is not None:
+            # get by id
             status = Status.query.get(status_id)
             if status:
                 return make_response(status_schema.jsonify(status), 200)
             return make_response("status_not_found", 404)
+        # get all
         all_statuses = Status.query.all()
         result = statuses_schema.dump(all_statuses)
         return make_response(jsonify(result), 200)

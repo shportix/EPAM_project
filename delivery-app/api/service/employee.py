@@ -18,13 +18,15 @@ class EmployeeCRUD(Resource):
 
     def get(self, employee_id=None):  # pylint: disable=R0201
         """
-        method that gets employee id nd returns employee
+        read method for employee table
         """
         if employee_id is not None:
+            # get by id
             employee = Employee.query.get(employee_id)
             if employee:
                 return make_response(employee_schema.jsonify(employee), 200)
             return make_response("employee_not_found", 404)
+        # get all
         all_employees = Employee.query.all()
         result = employees_schema.dump(all_employees)
         return make_response(jsonify(result), 200)
