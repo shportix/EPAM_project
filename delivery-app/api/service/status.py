@@ -46,7 +46,7 @@ class StatusCRUD(Resource):
         status = Status.query.get(status_id)
         if status:
             status.status_name = request.form["status_name"]
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(status_schema.jsonify(status), 200)
         return make_response("status_not_found", 404)
 

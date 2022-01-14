@@ -54,7 +54,7 @@ class DepartmentCRUD(Resource):
             department.name = request.form["name"]
             department.city = request.form["city"]
             department.address = request.form["address"]
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(department_schema.jsonify(department), 200)
         return make_response("department_not_found", 404)
 

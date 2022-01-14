@@ -68,7 +68,7 @@ class OrderedDishCRUD(Resource):
             order.delivery_id = delivery_id
             order.dish_id = dish_id
             order.status_id = status_id
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(order_schema.jsonify(order), 200)
         return make_response("order_not_found", 404)
 

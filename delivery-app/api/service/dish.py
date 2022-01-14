@@ -76,7 +76,7 @@ class DishCRUD(Resource):
             dish.value_added = value_added
             dish.image_id = image_id
             dish.description = description
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(dish_schema.jsonify(dish), 200)
         return make_response("dish_not_found", 404)
 

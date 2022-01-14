@@ -46,7 +46,7 @@ class DishCategoryCRUD(Resource):
         dish_category = DishCategory.query.get(dish_category_id)
         if dish_category:
             dish_category.category_name = request.form["category_name"]
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(dish_category_schema.jsonify(dish_category), 200)
         return make_response("dish_category_not_found", 404)
 

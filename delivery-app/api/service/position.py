@@ -52,7 +52,7 @@ class PositionCRUD(Resource):
             return make_response("invalid_position_name", 400)
         if position:
             position.position_name = request.form["position_name"]
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(position_schema.jsonify(position), 200)
         return make_response("position_not_found", 404)
 

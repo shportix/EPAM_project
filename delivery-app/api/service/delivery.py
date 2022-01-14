@@ -90,7 +90,7 @@ class DeliveryCRUD(Resource):
             delivery.date = date
             delivery.customer_address = customer_address
             delivery.status_id = status_id
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(delivery_schema.jsonify(delivery), 200)
         return make_response("delivery_not_found", 404)
 

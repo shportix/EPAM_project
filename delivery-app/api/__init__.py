@@ -206,7 +206,7 @@ positions_schema = PositionSchema(many=True)
 @app.route("/")
 def index():
     position_crud = PositionCRUD()
-    position = requests.get('http://127.0.0.1:5000/delivery/1')
+    position = requests.put("http://127.0.0.1:5000/position/1", data={"position_name": "pos"})
     return render_template('test.html', positions=position.text)
 
 @app.route('/upload', methods=['POST'])

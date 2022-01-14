@@ -52,7 +52,7 @@ class ImageCRUD(Resource):
             image.img = request.form["img"]
             image.name = request.form["name"]
             image.mimetype = request.form["mimetype"]
-            db.commit()  # pylint: disable=E1101
+            db.session.commit()  # pylint: disable=E1101
             return make_response(image_schema.jsonify(image), 200)
         return make_response("image_not_found", 404)
 
