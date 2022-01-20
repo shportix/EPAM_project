@@ -48,7 +48,7 @@ class SignIn(Resource):
         if user:
             if check_password_hash(user.password, password):
                 login_user(user)
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
 
 
 class SignOut(Resource):
@@ -60,10 +60,10 @@ class SignOut(Resource):
         sign out method
         """
         logging.info("user sign out")
-        if current_user.is_authenticated:
-            logout_user()
-            if session.get('employee'):
-                session.pop('employee')
-            if session.get('position'):
-                session.pop('position')
-        return redirect("/")
+        # if current_user.is_authenticated:
+        logout_user()
+        if session.get('employee'):
+            session.pop('employee')
+        if session.get('position'):
+            session.pop('position')
+        return redirect("/", 200)

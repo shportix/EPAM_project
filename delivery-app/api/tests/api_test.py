@@ -6,6 +6,11 @@ import flask_sqlalchemy
 
 import api  # pylint: disable=import-error, C0413, no-name-in-module
 from api import create_db  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.main import main  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.authorization import \
+    authorization  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.personnel_officer import \
+    personnel_officer  # pylint: disable=import-error, C0413, no-name-in-module
 
 SETUP_DONE = False
 
@@ -26,6 +31,7 @@ class FlaskrTestCase(unittest.TestCase):  # pylint: disable=R0904
                 'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/travis_test_db'
             api.app.config['TESTING'] = True
             db = flask_sqlalchemy.SQLAlchemy(api.app)  # pylint: disable=C0103, W0612
+
         from api.models import Position, User, Department, Employee, Image, DishCategory, Dish, \
             Status, Delivery, OrderedDish  # pylint: disable=import-error, C0413, wrong-import-position, W0614
         api.db.create_all()
@@ -255,7 +261,7 @@ class FlaskrTestCase(unittest.TestCase):  # pylint: disable=R0904
         result = self.app.put("/delivery/1", data={"department_id": 1,
                                                    "customer_id": 1,
                                                    "courier_id": 2,
-                                                   "date": "2022/01/1",
+                                                   "date": "2022/01/01",
                                                    "customer_address": "customer_address",
                                                    "status_id": 1})
         assert result.status_code == 200

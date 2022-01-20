@@ -95,7 +95,7 @@ class DeliveryCRUD(Resource):
                 logging.info('Update delivery failed: invalid customer id')
                 return make_response("invalid_customer_id", 400)
             if (not courier) or (
-                    Position.query.get(courier.position_id).pdeliveryosition_name != "courier"):
+                    Position.query.get(courier.position_id).position_name != "courier"):
                 logging.info('Update delivery failed: invalid courier id')
                 return make_response("invalid_courier_id", 400)
             if not Status.query.get(status_id):

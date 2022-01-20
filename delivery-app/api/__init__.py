@@ -1,7 +1,8 @@
 """
 start application
 """
-from flask import Flask
+import requests
+from flask import Flask, render_template
 import flask_sqlalchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
@@ -214,7 +215,15 @@ def load_user(user_id):
     """
     return User.query.get(int(user_id))
 
-
+@app.route('/ind')
+def ind():
+    res = requests.put(f'http://127.0.0.1:5000/delivery/1', data={"department_id": 1,
+                                                   "customer_id": 1,
+                                                   "courier_id": 2,
+                                                   "date": "2022/01/01",
+                                                   "customer_address": "customer_address",
+                                                   "status_id": 1})
+    return render_template('test.html', positions=res.text)
 # @app.route('/upload', methods=['POST'])
 # def upload():
 #     pic = request.files['pic']

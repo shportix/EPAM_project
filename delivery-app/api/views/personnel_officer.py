@@ -31,7 +31,7 @@ class Departments(Resource):
     """
     methods for personnel officer departments page
     """
-    @login_required
+    # @login_required
     def get(self):  # pylint: disable=R0201
         """
         get method for personnel officer departments page
@@ -57,7 +57,7 @@ class Departments(Resource):
                                                  totally_avg=totally_avg))
         logging.info("user is not personnel officer")
         logging.info("redirect to sign in page")
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
 
 
 class OneDepartment(Resource):
@@ -65,7 +65,7 @@ class OneDepartment(Resource):
     methods for personnel officer department page
     """
 
-    @login_required
+    # @login_required
     def get(self, department_id):  # pylint: disable=R0201
         """
         get method for personnel officer department page
@@ -108,14 +108,14 @@ class OneDepartment(Resource):
                                                  employees=employees), 200)
         logging.info("user is not personnel officer")
         logging.info("redirect to sign in page")
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
 
 
 class Employees(Resource):
     """
     methods for personnel officer employees page
     """
-    @login_required
+    # @login_required
     def get(self):  # pylint: disable=R0201
         """
         get method for personnel officer employees page
@@ -143,9 +143,9 @@ class Employees(Resource):
                                                  employees=employees), 200)
         logging.info("user is not personnel officer")
         logging.info("redirect to sign in page")
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
 
-    @login_required
+    # @login_required
     def post(self):  # pylint: disable=R0201
         """
         filter
@@ -200,17 +200,17 @@ class Employees(Resource):
                 return make_response(render_template("personnel_officer/employees.html",
                                                      employees=employees), 200)
 
-            return redirect("/personnel_officer/employee")
+            return redirect("/personnel_officer/employee", 200)
         logging.info("user is not personnel officer")
         logging.info("redirect to sign in page")
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
 
 
 class OneEmployee(Resource):
     """
     methods for personnel officer one employee page
     """
-    @login_required
+    # @login_required
     def get(self, employee_id):  # pylint: disable=R0201
         """
         get method for personnel officer one employee page
@@ -245,4 +245,4 @@ class OneEmployee(Resource):
                                                  department=department), 200)
         logging.info("user is not personnel officer")
         logging.info("redirect to sign in page")
-        return redirect("/sign_in")
+        return redirect("/sign_in", 200)
