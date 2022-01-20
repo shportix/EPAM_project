@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MY APP</title>
-</head>
-<body>
-
-<form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
-   <input type="file" name="pic" />
-   <input type="submit" value="Upload a file"/>
-</form>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div style="background-color: #e3e3e3; padding: 10%; ">
+    <div style="font-size: 50px; background-color: #233142; padding: 10%; border-radius:25px; border: 10px solid #455d7a; color: #455d7a; text-align: center;">
+        Here you can order the most delicious and high-quality food from different cuisines of the world. Go to the menu! Order! Enjoy!
+    </div>
+</div>
+{% endblock %}

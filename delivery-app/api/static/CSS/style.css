@@ -1,0 +1,62 @@
+.inline {
+display: inline;
+}
+
+.nav_button{
+font-size: 50px;
+vertical-align: 60px;
+height: 100;
+color:#455d7a;
+border: 0px;
+background-color: #233142;
+}
+
+.label{
+text-align: left;
+}
+
+.input{
+width:99%;
+font-size: 40px;
+margin-top: 30px;
+border-radius:5px;
+margin-bottom: 10px;
+}
+
+a{
+text-decoration:none;
+}
+
+.container_profile{
+font-size: 50px;
+background-color: #233142;
+padding-top: 4%;
+padding-left: 3%;
+padding-right: 3%;
+padding-bottom: 5%;
+border-radius:25px;
+border: 10px solid #455d7a;
+color: #455d7a;
+text-align: center;
+}
+
+.button_profile{
+width:49%;
+font-size: 40px;
+border-radius:5px;
+margin-top: 20px;
+background-color: #455d7a;
+color: #233142;
+border: 0px;
+pudding-top: 5px;
+height: 60px;
+}
+
+.button_sign_in{
+width:76%;
+font-size: 40px;
+border-radius:20px;
+margin-top: 20px;
+background-color:#e3e3e3;
+color: #233142;
+}

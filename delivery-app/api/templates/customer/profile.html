@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background-color: #e3e3e3; padding: 5%; ">
+    <div class="container_profile">
+        <div class="row">
+            <div class="inline">
+                <a href="/sign_out" >
+                    <button class="button_profile">
+                        Sign out
+                    </button>
+                </a>
+            </div>
+            <div class="inline">
+                <a href="">
+                    <button class="button_profile">
+                        Change password
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div style="margin-top: 3%;">
+            <form method="post" action="">
+                <div class="label">
+                    Name:
+                </div>
+                <div>
+                    <input type="text" name="name" class="input" value="{{ name }}">
+                </div>
+                <div class="label">
+                    Surname:
+                </div>
+                <div>
+                    <input type="text" name="surname" class="input" value="{{ surname }}">
+                </div>
+                <div class="label">
+                    Phone number:
+                </div>
+                <div>
+                    <input type="text" name="phoneNumber" class="input" value="{{ phoneNumber }}">
+                </div>
+                <div>
+                    <button class="button_profile" style="width: 100%; margin-top: 4%;">
+                        Save data
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

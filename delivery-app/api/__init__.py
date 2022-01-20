@@ -1,23 +1,25 @@
 """
 start application
 """
-import requests
-from flask import Flask, jsonify, request, render_template, make_response, Response
+from flask import Flask
 import flask_sqlalchemy
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from werkzeug.utils import secure_filename
+from flask_login import LoginManager
 
 
 app = Flask(__name__)
 app.debug = True
+app.config['SECRET_KEY'] = 'secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Fsmnl2002@localhost/delivery_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 api = Api(app)
 db = flask_sqlalchemy.SQLAlchemy(app)
 ma = Marshmallow(app)
+login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.init_app(app)
 
 
 class PositionSchema(ma.Schema):  # pylint: disable=too-few-public-methods
@@ -174,10 +176,6 @@ class OrderSchema(ma.Schema):  # pylint: disable=too-few-public-methods
                   'status_id')
 
 
-class PositionForm(FlaskForm):
-    position_name = StringField("position_name")
-
-
 from api.service.position import PositionCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.ordered_dish import OrderedDishCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.image import ImageCRUD  # pylint: disable=import-error, C0413, no-name-in-module
@@ -188,7 +186,10 @@ from api.service.department import DepartmentCRUD  # pylint: disable=import-erro
 from api.service.employee import EmployeeCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.status import StatusCRUD  # pylint: disable=import-error, C0413, no-name-in-module
 from api.service.delivery import DeliveryCRUD  # pylint: disable=import-error, C0413, no-name-in-module
-from api.models import Image  # pylint: disable=import-error, C0413, no-name-in-module
+from api.models import Image, User  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.main import main  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.authorization import authorization  # pylint: disable=import-error, C0413, no-name-in-module
+from api.rest.personnel_officer import personnel_officer  # pylint: disable=import-error, C0413, no-name-in-module
 
 api.add_resource(PositionCRUD, '/position', '/position/<int:position_id>')
 api.add_resource(OrderedDishCRUD, '/ordered_dish', '/ordered_dish/<int:order_id>')
@@ -200,42 +201,45 @@ api.add_resource(DepartmentCRUD, '/department', '/department/<int:department_id>
 api.add_resource(EmployeeCRUD, '/employee', '/employee/<int:employee_id>')
 api.add_resource(StatusCRUD, '/status', '/status/<int:status_id>')
 api.add_resource(DeliveryCRUD, '/delivery', '/delivery/<int:delivery_id>')
+app.register_blueprint(main)
+app.register_blueprint(authorization)
+app.register_blueprint(personnel_officer, url_prefix='/personnel_officer')
 positions_schema = PositionSchema(many=True)
 
 
-@app.route("/")
-def index():
-    position_crud = PositionCRUD()
-    position = requests.post("http://127.0.0.1:5000/image", data={"img": "None",
-                                               "name": "name",
-                                               "mimetype": "png"})
-    return render_template('test.html', positions=position.text)
-
-@app.route('/upload', methods=['POST'])
-def upload():
-    pic = request.files['pic']
-    if not pic:
-        return 'No pic uploaded!', 400
-
-    filename = secure_filename(pic.filename)
-    mimetype = pic.mimetype
-    if not filename or not mimetype:
-        return 'Bad upload!', 400
-
-    img = Image(img=pic.read(), name=filename, mimetype=mimetype)
-    db.session.add(img)
-    db.session.commit()
-
-    return 'Img Uploaded!', 200
+@login_manager.user_loader
+def load_user(user_id):
+    """
+    user loader
+    """
+    return User.query.get(int(user_id))
 
 
-@app.route('/<int:id>')
-def get_img(id):
-    # img = Image.query.filter_by(id=id).first()
-    # if not img:
-    #     return 'Img Not Found!', 404
-    #
-    # return Response(img.img, mimetype=img.mimetype)
-    # position = requests.post(f'http://127.0.0.1:5000/position', data={"position_name":"position"})
-    image =  requests.get(f'http://127.0.0.1:5000/image/{id}')
-    return image.content
+# @app.route('/upload', methods=['POST'])
+# def upload():
+#     pic = request.files['pic']
+#     if not pic:
+#         return 'No pic uploaded!', 400
+#
+#     filename = secure_filename(pic.filename)
+#     mimetype = pic.mimetype
+#     if not filename or not mimetype:
+#         return 'Bad upload!', 400
+#
+#     img = Image(img=pic.read(), name=filename, mimetype=mimetype)
+#     db.session.add(img)
+#     db.session.commit()
+#
+#     return 'Img Uploaded!', 200
+#
+#
+# @app.route('/<int:pos_id>')
+# def get_img(pos_id):
+#     img = Image.query.filter_by(id=id).first()
+#     if not img:
+#         return 'Img Not Found!', 404
+#
+#     return Response(img.img, mimetype=img.mimetype)
+#     position = requests.post(f'http://127.0.0.1:5000/position', data={"position_name":"position"})
+#     image = requests.get(f'http://{request.host}/position/{pos_id}')
+#     return render_template('test.html', positions=image.text)

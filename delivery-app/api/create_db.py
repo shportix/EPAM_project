@@ -98,7 +98,7 @@ def fill_db(name, test=True, host="localhost", user="root", passwd=""):
     my_cursor.execute(add_position, (3,
                                      "chef",))
     my_cursor.execute(add_position, (4,
-                                     "personel_officer",))
+                                     "personnel_officer",))
     my_cursor.execute(add_position, (5,
                                      "cook",))
 
@@ -124,10 +124,10 @@ def fill_db(name, test=True, host="localhost", user="root", passwd=""):
                                  "0980000000",
                                  True))
     my_cursor.execute(add_user, (4,
-                                 "personel_officer@gmil.com",
+                                 "personnel_officer@gmil.com",
                                  generate_password_hash("password"),
-                                 "personel_officer_name",
-                                 "personel_officer_surname",
+                                 "personnel_officer_name",
+                                 "personnel_officer_surname",
                                  "0980000000",
                                  True))
     my_cursor.execute(add_user, (5,

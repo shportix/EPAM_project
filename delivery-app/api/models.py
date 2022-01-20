@@ -3,6 +3,7 @@ database models
 """
 from sqlalchemy.sql import func
 from sqlalchemy.dialects.mysql import MEDIUMBLOB
+from flask_login import UserMixin
 from api import db
 
 
@@ -15,7 +16,7 @@ class Position(db.Model):  # pylint: disable=too-few-public-methods
     position_name = db.Column(db.String(100), unique=True)  # pylint: disable=E1101
 
 
-class User(db.Model):  # pylint: disable=too-few-public-methods
+class User(UserMixin, db.Model):  # pylint: disable=too-few-public-methods
     """
     user table model
     """
