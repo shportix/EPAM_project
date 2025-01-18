@@ -1,0 +1,45 @@
+{% extends "personnel_officer/base.html" %}
+{% block content %}
+<div>
+    <form method="post" action="/personnel_officer/employee" class="inline">
+        <div class="inline" style="font-size:40px;">
+            Search by birthday:
+        </div>
+        <input type="text" name="input" style="width:71%; font-size:40px;" placeholder="  Input format:  yyyy/mm/dd  or  yyyy/mm/dd:yyyy/mm/dd">
+        <div class="inline">
+            <button style="vertical-align:-5px;">
+                <img src="../static/images/search.png" height="40px">
+            </button>
+        </div>
+    </form>
+    <div class="inline">
+        <a href="/personnel_officer/employee">
+            <button style="font-size:40px;">
+                All
+            </button>
+        </a>
+    </div>
+</div>
+<div style="background-color: #e3e3e3;">
+    <table valign="middle" border="4px" style="text-align:center; font-size: 20px; vertical-align: top;">
+        <tr style="font-weight: bold;">
+            <td style="width:300px">Surname</td>
+            <td style="width:300px; height: 70px; ">Name</td>
+            <td style="width:300px">Position</td>
+            <td style="width:300px">Birthday</td>
+            <td style="width:300px">Salary</td>
+            <td style="width:200px">Department ID</td>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td style="width:400px; height: 70px;"><a href="/personnel_officer/employee/{{ employee.id }}">{{ employee.surname }}</a></td>
+            <td style="width:400px">{{ employee.name }}</td>
+            <td style="width:300px">{{ employee.position }}</td>
+            <td style="width:300px">{{ employee.birthday }}</td>
+            <td style="width:300px">{{ employee.salary }}</td>
+            <td style="width:200px">{{ employee.department_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

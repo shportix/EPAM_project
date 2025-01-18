@@ -1,0 +1,88 @@
+{% extends "personnel_officer/base.html" %}
+{% block content %}
+<div style="background-color: #e3e3e3; padding-top:50px; padding-bottom:50px;" class="row">
+    <table style="font-size:50px; margin:auto;">
+        <tr>
+            <td style="width:500px;">ID:</td>
+            <td>{{ department["id"] }}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{ department["name"] }}</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td>{{ department["city"] }}</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td>{{ department["address"] }}</td>
+        </tr>
+        <tr>
+            <td>Average salary:</td>
+            <td>{{ department["average salary"] }}</td>
+        </tr>
+    </table>
+    <div style="text-align:center; font-size:50px; margin-top:50px;">Employees</div>
+    <table style="font-size:20px; margin:auto; text-align: center; margin-top: 50px;" border="2px solid black">
+        <tr>
+            <td style="width:300px; height: 70px;">Surname:</td>
+            <td style="width:300px">Name:</td>
+            <td style="width:300px">Position:</td>
+            <td style="width:300px">Birthday:</td>
+            <td style="width:300px">Salary:</td>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td style="height: 70px;"><a href="/personnel_officer/employee/{{ employee.id }}">{{ employee.surname }}</a></td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.birthday }}</td>
+            <td>{{ employee.salary }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<!--        <table style="margin:auto; margin-top:50px; font-size:40px">-->
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <div>-->
+<!--                        Salary-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <select style="font-size:40px; margin-left: 10px;">-->
+<!--                        <option>-->
+<!--                            increase-->
+<!--                        </option>-->
+<!--                        <option>-->
+<!--                            decrease-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div style="margin-left: 10px;">-->
+<!--                        for all department employees by-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="number" style="font-size:40px; width: 140px; margin-left: 10px;">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <select style="font-size:40px; margin-left: 10px;">-->
+<!--                        <option>-->
+<!--                            ₴-->
+<!--                        </option>-->
+<!--                        <option>-->
+<!--                            %-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <button style="font-size:40px; width: 160px; margin-left: 10px; background-color: #455d7a; color:#233142; border: 4px solid #233142;">-->
+<!--                        Apply-->
+<!--                    </button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+</div>
+{% endblock %}

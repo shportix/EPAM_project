@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="/static/CSS/style.css">
+<body>
+<header>
+    <div class="row" style="border:5px solid #233142; font-size:90px; color:#233142; background-color: #455d7a;">
+        <img height="150px" style="border-radius: 10%; margin-top:20px; margin-left:20px;" src="../static/images/logo.png">
+        <div class="inline" style="vertical-align: 45px; margin-left:10%;">
+            Take and go
+        </div>
+        <a  href="">
+            <button style="margin-left:10%;" class="nav_button">
+                Menu
+            </button>
+        </a>
+        <a href="">
+            <button class="nav_button">
+                Info
+            </button>
+        </a>
+        <a href="">
+            <button class="nav_button">
+                Cart
+            </button>
+        </a>
+        <a href="/sign_in">
+            <button class="nav_button">
+                My office
+            </button>
+        </a>
+
+    </div>
+</header>
+<div class="hero-body">
+    <div class="container has-text-centered">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+<footer style="border:1px solid black; background-color: #455d7a; border:5px solid #233142;">
+    <table style="margin-left: 2%; margin-top:30px; margin-bottom:30px; ">
+        <tr>
+            <td style="width: 25%;">
+               Contact phone numbers:
+            </td>
+            <td style="width: 43%;">
+                Contact email:
+            </td>
+        </tr>
+        <tr style="height: 60px;">
+            <td>
+                +888888888888
+            </td>
+            <td>
+                contactemail@gmail.com
+            </td>
+            <td style="font-size: 30px;">
+                © "Company name" is a registered trademark
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                +777777777777
+            </td>
+
+        </tr>
+    </table>
+
+</footer>
+</body>
+</html>

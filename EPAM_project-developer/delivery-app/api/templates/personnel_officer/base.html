@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link type="text/css" rel="stylesheet" href="/static/CSS/style.css">
+<body style="background-color: #e3e3e3;">
+<header style="background-color: #455d7a;">
+    <div class="row" style="border:5px solid #233142; font-size:100px; color:#233142; background-color: #455d7a;">
+         <a  href="/personnel_officer/department">
+            <button style="margin-left:3%; vertical-align: 18px; width: 16%;" class="nav_button">
+                Departments
+            </button>
+        </a>
+        <a href="/personnel_officer/employee">
+            <button class="nav_button" style="vertical-align: 18px; width: 15%;  margin-right:23%;">
+                Employees
+            </button>
+        </a>
+
+        <a href="">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width: 24%;">
+                Change password
+            </button>
+        </a>
+        <a href="/sign_out">
+            <button class="nav_button" style="border: 1px solid #233142; border-radius: 10px; vertical-align: 18px; width:12%; ">
+                Sign out
+            </button>
+        </a>
+
+    </div>
+</header>
+<div class="hero-body">
+    <div class="container has-text-centered">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+</body>
+</html>

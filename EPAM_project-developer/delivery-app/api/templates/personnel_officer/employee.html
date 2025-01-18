@@ -1,0 +1,118 @@
+<{% extends "personnel_officer/base.html" %}
+{% block content %}
+<div style="background-color: #e3e3e3; padding-top:50px;">
+    <table style="font-size:50px; margin:auto;">
+        <tr>
+            <td style="width:500px;">
+                Surname:
+            </td>
+            <td>
+                {{ employee.surname }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+                {{ employee.name }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Position:
+            </td>
+            <td>
+                {{ employee.position }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Birthday:
+            </td>
+            <td>
+                {{ employee.birthday }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Salary:
+            </td>
+            <td>
+                {{ employee.salary }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Department ID:
+            </td>
+            <td>
+                {{ employee['department_id'] }}
+            </td>
+        </tr>
+    </table>
+    <table style="font-size:20px; margin:auto; text-align: center; margin-top: 50px;" border="2px solid black">
+        <tr>
+            <td style="width:200px; height: 70px; ">ID:</td>
+            <td style="width:400px">Name:</td>
+            <td style="width:400px">City:</td>
+            <td style="width:400px">Address:</td>
+            <td style="width:400px">Average salary:</td>
+        </tr>
+        <tr>
+            <td><a href="/personnel_officer/department/{{ employee['department_id'] }}">{{ employee['department_id'] }}</a></td>
+            <td style="height: 70px;">{{ department.name }}</td>
+            <td>{{ department.city }}</td>
+            <td>{{ department.address }}</td>
+            <td>{{ department.average_salary }}</td>
+        </tr>
+    </table>
+<!--        <table style="margin:auto; margin-top:50px; font-size:40px">-->
+<!--            <tr>-->
+<!--                <td style="width: 410px;">-->
+<!--                    <button style="font-size:40px; width: 200px; background-color: #455d7a; color:#233142; border: 4px solid #233142;">-->
+<!--                        Fire-->
+<!--                    </button>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div>-->
+<!--                        Salary-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <select style="font-size:40px; margin-left: 10px;">-->
+<!--                        <option>-->
+<!--                            increase-->
+<!--                        </option>-->
+<!--                        <option>-->
+<!--                            decrease-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <div style="margin-left: 10px;">-->
+<!--                        by-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="number" style="font-size:40px; width: 140px; margin-left: 10px;">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <select style="font-size:40px; margin-left: 10px;">-->
+<!--                        <option>-->
+<!--                            ₴-->
+<!--                        </option>-->
+<!--                        <option>-->
+<!--                            %-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <button style="font-size:40px; width: 200px; margin-left: 10px; background-color: #455d7a; color:#233142; border: 4px solid #233142;">-->
+<!--                        Apply-->
+<!--                    </button>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+</div>
+{% endblock %}
